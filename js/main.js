@@ -1,6 +1,6 @@
 //Load flickr gallery
 var httpRequest = new XMLHttpRequest();
-httpRequest.open('GET', 'https://api.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=f45b96e80316446649d82d3d211ce5a8&gallery_id=66911286-72157692049980335&per_page=10&format=json&nojsoncallback=1', true);
+httpRequest.open('GET', 'https://api.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=66b821bf75ec005c7140b0f3358f0427&gallery_id=66911286-72157692049980335&per_page=10&format=json&nojsoncallback=1', true);
 
 httpRequest.onload = function() {
 	//check status of API request
@@ -8,7 +8,7 @@ httpRequest.onload = function() {
 
 		//loads/stores retrieved data from API
 		var resp = JSON.parse(httpRequest.responseText);
-
+		console.log(resp);
 		var output = '';
 
 		//loop through JSON data
@@ -21,8 +21,11 @@ httpRequest.onload = function() {
 			var secret = resp.photos.photo[i].secret;
 
 			//Output formatting: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
-			output += '<img src="https://farm' + farm + '.staticflickr.com/' + server + '/' + id + '_' + secret + '.jpg"/>'
-		}
+			//height/width adjusted for thumbnails
+			output += '<img src="https://farm' + farm + '.staticflickr.com/' + server + '/' + id + '_' + secret + '.jpg"\
+			 height="75" width="100"/>'
+
+		}//ends for loop
 
 		//update html file
 		document.getElementById('display').innerHTML = output;

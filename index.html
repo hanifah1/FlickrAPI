@@ -4,13 +4,29 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="css/style.css">
-  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <link rel="stylesheet" href="css/styles.css">
+    <!-- Bootstrap core CSS -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
   <title>Flickr API</title>
 
 <body>
 
+<!-- testing modal functionality with a random image url *WORKING*-->
+<a href="#openModal"><img src="https://bnutty.com/wp-content/uploads/2017/10/Joyful-Cranberries-peanut-butter-600x600.jpg"\ 
+height="75" width="100" /></a>
+
+<div id="openModal" class="modalDialog">
+	<div>
+		<a href="#close" title="Close" class="close">X</a>
+		<img src="https://bnutty.com/wp-content/uploads/2017/10/Joyful-Cranberries-peanut-butter-600x600.jpg" height="600" 
+		width="600" />
+	</div>
+</div>
+
+<!-- JS file writes into this div-->
 <div id="display"/>
 
 <script src="js/main.js"></script>
