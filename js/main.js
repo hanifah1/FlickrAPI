@@ -24,7 +24,7 @@ httpRequest.onload = function() {
 			//height/width adjusted for thumbnails
 			//creation of modal for each image in gallery where <a> tag displays thumbnail & full image is displayed in the body of the modal
 			output += '<a href="#openModal"><img src="https://farm' + farm + '.staticflickr.com/' + server + '/' + id + '_' + secret + '.jpg"\
-			height="75" width="100"/></a>\
+			 height="150" width="200"/></a>\
 			<div id="openModal" class="modalDialog">\
 			<div>\
 			<a href="#close" title="Close" class="close">X</a>\
@@ -37,15 +37,14 @@ httpRequest.onload = function() {
 		//update html file
 		document.getElementById('display').innerHTML = output;
 
-
 		//This part needs to be converted to vanilla JS
 		//add event listener to assign src attribute from thumbnail to display in modal
 		$('img').on('click',function()
-		{
-			var imgSrc =$(this).attr('src');
-			$('#displayImg').attr('src', imgSrc);
-			$('#openModal').modal('show');
-		});
+            {
+                var imgSrc =$(this).attr('src');
+                $('#displayImg').attr('src', imgSrc);
+                $('#openModal').modal('show');
+            });
 	}
 };
 

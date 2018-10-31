@@ -1,3 +1,11 @@
+h1 {
+  text-align: center;
+}
+
+img {
+  padding: 10px;
+}
+
 /* styling modal*/
 .modalDialog {
   position: fixed;
