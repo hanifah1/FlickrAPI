@@ -1,5 +1,5 @@
 /* styling modal*/
-.modalDialog {                    
+.modalDialog {
   position: fixed;
   font-family: Arial, Helvetica, sans-serif;
   top: 0;
@@ -23,10 +23,10 @@
 
 /*styling Div tag */
 .modalDialog > div {
-  width: 700px;
+  width: 600px;
   position: relative;
   margin: 5% auto;
-  padding: 0px 20px 13px 20px;
+  padding: 20px 20px 13px 20px;
 }
 
 /* styling close 'x' button */

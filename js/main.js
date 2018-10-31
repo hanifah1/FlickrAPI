@@ -12,7 +12,7 @@ httpRequest.onload = function() {
 		var output = '';
 
 		//loop through JSON data
-		for(var i in resp.photos.photo){	
+		for(var i in resp.photos.photo){
 
 			//assigned variables to data pulled from arrays
 			var farm = resp.photos.photo[i].farm;
@@ -22,16 +22,21 @@ httpRequest.onload = function() {
 
 			//Output formatting: https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
 			//height/width adjusted for thumbnails
-			output += '<img src="https://farm' + farm + '.staticflickr.com/' + server + '/' + id + '_' + secret + '.jpg"\
-			 height="75" width="100"/>'
+			//creation of modal for each image in gallery where <a> tag displays thumbnail & full image is displayed in the body of the modal
+			output += '<a href="#openModal"><img src="https://farm' + farm + '.staticflickr.com/' + server + '/' + id + '_' + secret + '.jpg"\
+			 height="75" width="100"/></a>\
+			<div id="openModal" class="modalDialog">\
+			<div>\
+			<a href="#close" title="Close" class="close">X</a>\
+			<img src="https://farm' + farm + '.staticflickr.com/' + server + '/' + id + '_' + secret + '.jpg" />\
+			</div>\
+			</div>'
 
 		}//ends for loop
 
 		//update html file
 		document.getElementById('display').innerHTML = output;
-	} 
+	}
 };
 
 httpRequest.send();
-
-
