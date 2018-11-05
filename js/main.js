@@ -29,7 +29,7 @@ httpRequest.onload = function() {
 			output = '<a href="#openModal"><img src="https://farm' + farm + '.staticflickr.com/' + server + '/' + id + '_' + secret + '.jpg"\
 			height="225" width="300"/></a>\
 			<div id="openModal" class="modalDialog">\
-			<div>\
+			<div id= "modalContent">\
 			<a href="#close" title="Close" class="close">X</a>\
 			<img id="displayImg" class="responsive" src="">\
 			</div>\
@@ -69,60 +69,59 @@ httpRequest.onload = function() {
 			var gallery = document.getElementById("gallery");
 			var page_span = document.getElementById("page");
 
-	//clears images from previous page load when page is changed
-    gallery.innerHTML = "";
+			//clears images from previous page load when page is changed
+			gallery.innerHTML = "";
 
-    //for loop writes the intended array elements into the HTML tag
-    for (var i = (page-1) * records_per_page; i < (page * records_per_page) && i < jsonArray.length; i++) {
-    	gallery.innerHTML += jsonArray[i];
-    }
+			//for loop writes the intended array elements into the HTML tag
+			for (var i = (page-1) * records_per_page; i < (page * records_per_page) && i < jsonArray.length; i++) {
+				gallery.innerHTML += jsonArray[i];
+			}
 
-    //displays the current page in relation to the total number of pages
-    page_span.innerHTML = page + "/" + numPages();
+			//displays the current page in relation to the total number of pages
+			page_span.innerHTML = page + "/" + numPages();
 
-    //prevents previous button from showing if user is on page 1
-    if (page == 1) {
-    	btn_prev.style.visibility = "hidden";
-    } else {
-    	btn_prev.style.visibility = "visible";
-    }
+			//prevents previous button from showing if user is on page 1
+			if (page == 1) {
+				btn_prev.style.visibility = "hidden";
+			} else {
+				btn_prev.style.visibility = "visible";
+			}
 
-    //prevents next button from showing if user is on last
-    if (page == numPages()) {
-    	btn_next.style.visibility = "hidden";
-    } else {
-    	btn_next.style.visibility = "visible";
-    }
-}
+			//prevents next button from showing if user is on last
+			if (page == numPages()) {
+				btn_next.style.visibility = "hidden";
+			} else {
+				btn_next.style.visibility = "visible";
+			}
 
-//calculates the nmuber of pages using the amount of items in array and the intended amount of items per page
-function numPages()
-{
-	return Math.ceil(jsonArray.length / records_per_page);
-}
+			//This part needs to be converted to vanilla JS
+			//add event listener to assign src attribute from thumbnail to display in modal
+			for (let j = 0; j < jsonArray.length; j++) {
+				$('img').on('click',function()
+				{
 
-//loads data for page one when application is opened
-$( document ).ready(function() {
-	changePage(1);
-});
+					var imgSrc =$(this).attr('src');
+					$('#displayImg').attr('src', imgSrc);
+					$('#openModal').modal('show');
+				});
+			}//ends for loop
+		}
 
-  //makes functions global instead of local
-  window['nextPage'] = nextPage;
-  window['prevPage'] = prevPage;
+		//calculates the nmuber of pages using the amount of items in array and the intended amount of items per page
+		function numPages()
+		{
+			return Math.ceil(jsonArray.length / records_per_page);
+		}
 
-//This part needs to be converted to vanilla JS
-//add event listener to assign src attribute from thumbnail to display in modal
-for (let j = 0; j < jsonArray.length; j++) {
-	$('img').on('click',function()
-	{
-		var imgSrc =$(this).attr('src');
-		$('#displayImg').attr('src', imgSrc);
-		$('#openModal').modal('show');
-	});
+		//loads data for page one when application is opened
+		$( document ).ready(function() {
+			changePage(1);
+		});
 
-}//ends for loop
-
-}
+		//makes functions global instead of local
+		window['nextPage'] = nextPage;
+		window['prevPage'] = prevPage;
+	}
 };
 
 httpRequest.send();

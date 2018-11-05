@@ -10,6 +10,23 @@ img {
   text-align: center;
 }
 
+#page{
+  padding-bottom: 50px;
+}
+
+/*adjusts modal's content based on screen size*/
+@media (max-width: 750px) {
+  #displayImg {
+    height: auto;
+    width: 350px;
+    padding: none;
+    margin:none;
+  }
+  #modalContent {
+    margin: 5%;
+  }
+}
+
 /* styling modal*/
 .modalDialog {
   position: fixed;
@@ -33,7 +50,7 @@ img {
 }
 
 /*styling Div tag */
-.modalDialog > div {
+.modalDialog div {
   width: 40%;
   position: relative;
   margin: 5% auto;
@@ -52,4 +69,4 @@ img {
   width: 24px;
   text-decoration: none;
   font-weight: bold;
- }
+}
