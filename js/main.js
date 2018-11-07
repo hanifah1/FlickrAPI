@@ -101,7 +101,7 @@ httpRequest.onload = function() {
 				{
 
 					var imgSrc =$(this).attr('src');
-					$('#displayImg').attr('src', imgSrc);
+					document.getElementById('displayImg').setAttribute('src', imgSrc);
 					$('#openModal').modal('show');
 				});
 			}//ends for loop
@@ -114,9 +114,9 @@ httpRequest.onload = function() {
 		}
 
 		//loads data for page one when application is opened
-		$( document ).ready(function() {
-			changePage(1);
-		});
+		if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading"){
+    		changePage(1);
+  	} 
 
 		//makes functions global instead of local
 		window['nextPage'] = nextPage;
